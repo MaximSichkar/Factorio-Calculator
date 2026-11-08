@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -55,6 +58,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\IconPathConverter.cs" />
+    <Compile Include="Models\Module.cs" />
+    <Compile Include="Models\ModuleEffectResult.cs" />
+    <Compile Include="Models\ModuleSlot.cs" />
+    <Compile Include="Models\RecipeSubgroup.cs" />
+    <Compile Include="ModuleSelectionWindow.xaml.cs">
+      <DependentUpon>ModuleSelectionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\ModuleRepository.cs" />
+    <Compile Include="Services\FactorioImportRecipe.cs" />
+    <Compile Include="Services\FactorioDataImporter.cs" />
+    <Compile Include="Models\ProductionResult.cs" />
+    <Compile Include="Models\RecipeGroup.cs" />
+    <Compile Include="RecipeSelectionWindow.xaml.cs">
+      <DependentUpon>RecipeSelectionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\FactoryRepository.cs" />
+    <Compile Include="Repositories\RecipeRepository.cs" />
+    <Compile Include="Services\ModuleEffectCalculator.cs" />
+    <Compile Include="Services\ProductionCalculator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -67,8 +90,20 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ModuleSelectionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RecipeSelectionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Factory.cs" />
+    <Compile Include="Models\Ingredient.cs" />
+    <Compile Include="Models\Recipe.cs" />
+    <Compile Include="Models\RecipeCategory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -86,6 +121,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="Data\recipes.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -93,6 +132,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Recipes\" />
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Factories\assembling-machine-1.png" />
+    <Resource Include="Assets\Factories\assembling-machine-2.png" />
+    <Resource Include="Assets\Factories\assembling-machine-3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
